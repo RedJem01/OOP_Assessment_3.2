@@ -21,10 +21,25 @@ namespace OOP_assessment_3
             set { _ID = value; }
         }
 
-        private Hand _hand;
-        public Player(Hand hand)
+        private List<Hand> _pHand;
+
+        public List<Hand> pHand
         {
-            _hand = hand;
+           get { return _pHand; }
+            set { _pHand = value; }
+        }
+
+        private List<Hand> _cHand;
+        public List<Hand> cHand
+        {
+            get { return _cHand; }
+            set { _cHand = value; }
+        }
+
+        public Player()
+        {
+            pHand = new List<Hand>(10);
+            cHand = new List<Hand>(10);
         }
 
         public abstract void Play();
@@ -34,16 +49,16 @@ namespace OOP_assessment_3
     class Hand 
     {
         //Hand class attribute
-        private List<string> _handy;
-        public List<string> handy
+        private List<string> _hand;
+        public List<string> hand
         {
-            get { return _handy; }
-            set { _handy = value; }
+            get { return _hand; }
+            set { _hand = value; }
         }
 
         public Hand()
         {
-            handy = new List<string>(10);
+            hand = new List<string>(10);
         }
     }
 
@@ -62,7 +77,7 @@ namespace OOP_assessment_3
             Console.WriteLine("Computers turn");
             Random rnd = new Random();
             int rnum1 = rnd.Next(1, 10);
-            string cp_card1 = 
+            object cp_card1 = cHand[rnum1];
             int rnum2 = rnd.Next(1, 10);
         }
     }

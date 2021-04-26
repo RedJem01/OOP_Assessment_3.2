@@ -43,10 +43,10 @@ namespace OOP_assessment_3
             {
                 int rnum1 = rnd.Next(1, 52);
                 int rnum2 = rnd.Next(1, 52);
-                string a = Cards[rnum1];
-                string b = Cards[rnum2];
-                Cards[rnum2] = a;
-                Cards[rnum1] = b;
+                object a = Cards[rnum1];
+                object b = Cards[rnum2];
+                Cards[rnum2] = (Card)a;
+                Cards[rnum1] = (Card)b;
             }
         }
 
@@ -59,15 +59,15 @@ namespace OOP_assessment_3
             {
                 isEmpty();
             }
-            Random rand = new Random();
             for (int i = 0; i > 10; i++)
             {
-                int numb = rand.Next(0, Cards.Count);
-                int number = rand.Next(0, Cards.Count);
-                h.Add(Cards[numb]);
-                c.Add(Cards[number]);
-                Cards.Remove(numb);
-                Cards.Remove(number);
+                h.pHand.Add(Cards[i]);
+                Cards.Remove(i);
+            }
+            for (int i = 0; i > 10; i++)
+            {
+                c.cHand.Add(Cards[i]);
+                Cards.Remove(i);
             }
         }
     }

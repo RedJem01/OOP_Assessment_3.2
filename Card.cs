@@ -20,33 +20,33 @@ namespace OOP_assessment_3
             set { _suit = value; }
         }
 
-        public Cards(string num, string suit)
+        public Card(int rankNum, int suitNum)
         {
-            switch (suit)
+            switch (suitNum)
             {
-                case 1: c.suit = "Spades"; break;
-                case 2: c.suit = "Clubs"; break;
-                case 3: c.suit = "Diamonds"; break;
-                case 4: c.suit = "Hearts"; break;
+                case 1: suit = "Spades"; break;
+                case 2: suit = "Clubs"; break;
+                case 3: suit = "Diamonds"; break;
+                case 4: suit = "Hearts"; break;
             }
 
-            switch (num)
+            switch (rankNum)
             {
-                case 1: c.num = "Ace"; break;
-                case 2: c.num = "2"; break;
-                case 3: c.num = "3"; break;
-                case 4: c.num = "4"; break;
-                case 5: c.num = "5"; break;
-                case 6: c.num = "6"; break;
-                case 7: c.num = "7"; break;
-                case 8: c.num = "8"; break;
-                case 9: c.num = "9"; break;
-                case 10: c.num = "10"; break;
-                case 11: c.num = "Jack"; break;
-                case 12: c.num = "Queen"; break;
-                case 13: c.num = "King"; break;
+                case 1: num = "Ace"; break;
+                case 2: num = "2"; break;
+                case 3: num = "3"; break;
+                case 4: num = "4"; break;
+                case 5: num = "5"; break;
+                case 6: num = "6"; break;
+                case 7: num = "7"; break;
+                case 8: num = "8"; break;
+                case 9: num = "9"; break;
+                case 10: num = "10"; break;
+                case 11: num = "Jack"; break;
+                case 12: num = "Queen"; break;
+                case 13: num = "King"; break;
             }
-        return;
+            return;
         }
     }
 }
