@@ -51,24 +51,43 @@ namespace OOP_assessment_3
         }
 
         //Dealing out the cards function
-        public void Deal()
+        public void Deal(string opponent)
         {
             Human h = new Human();
+            Human h2 = new Human();
             Computer c = new Computer();
-            if (Cards.Count == 0)
+
+            if (opponent == "P")
             {
-                isEmpty();
+                for (int i = 0; i > 10; i++)
+                {
+                    object temp = Cards[i];
+                    h.hand.Add((Hand)temp);
+                    Cards.Remove((Card)temp);
+                }
+                for (int i = 0; i > 10; i++)
+                {
+                    object temp = Cards[i];
+                    h2.hand.Add((Hand)temp);
+                    Cards.Remove((Card)temp);
+                }
             }
-            for (int i = 0; i > 10; i++)
+            else
             {
-                h.pHand.Add(Cards[i]);
-                Cards.Remove(i);
+                for (int i = 0; i > 10; i++)
+                {
+                    object temp = Cards[i];
+                    h.hand.Add((Hand)temp);
+                    Cards.Remove((Card)temp);
+                }
+                for (int i = 0; i > 10; i++)
+                {
+                    object temp = Cards[i];
+                    c.hand.Add((Hand)temp);
+                    Cards.Remove((Card)temp);
+                }
             }
-            for (int i = 0; i > 10; i++)
-            {
-                c.cHand.Add(Cards[i]);
-                Cards.Remove(i);
-            }
+
         }
     }
 }

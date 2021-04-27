@@ -21,28 +21,19 @@ namespace OOP_assessment_3
             set { _ID = value; }
         }
 
-        private List<Hand> _pHand;
-
-        public List<Hand> pHand
+        private List<Hand> _hand;
+        public List<Hand> hand
         {
-           get { return _pHand; }
-            set { _pHand = value; }
-        }
-
-        private List<Hand> _cHand;
-        public List<Hand> cHand
-        {
-            get { return _cHand; }
-            set { _cHand = value; }
+            get { return _hand; }
+            set { _hand = value; }
         }
 
         public Player()
         {
-            pHand = new List<Hand>(10);
-            cHand = new List<Hand>(10);
+            hand = new List<Hand>(10);
         }
 
-        public abstract void Play();
+        public abstract int Play(List<Hand> handy);
 	}
 
     //Hand class
@@ -64,21 +55,54 @@ namespace OOP_assessment_3
 
     class Human : Player 
     {
-        public override void Play()
+        public override int Play(List<Hand> handy)
         {
-            
+            Deck d = new Deck();
+            int total = 0;
+            Console.WriteLine($"Here is your hand: {handy}");
+            bool loop_done = true;
+            while (loop_done == true)
+            {
+                try
+                {
+                    Console.WriteLine("Please choose 2 cards.");
+                    Console.WriteLine("Card 1: ");
+                    string card1 = Console.ReadLine();
+                    foreach (object i in d.Cards)
+                    {
+                        int j = Convert.ToInt32(i);
+                        object temp = handy[j];
+                        if (temp.ToString() == card1)
+                        {
+                            loop_done = false;
+                        }
+                        else
+                        {
+                            throw new WrongInputException("That is the wrong input. Please input a card in your hand.");
+                        }
+
+                    }
+                }
+                catch (WrongInputException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            return total;
         }
     }
 
     class Computer : Player
     {
-        public override void Play()
+        public override int Play(List<Hand> handy)
         {
+            int total = 0;
             Console.WriteLine("Computers turn");
             Random rnd = new Random();
             int rnum1 = rnd.Next(1, 10);
-            object cp_card1 = cHand[rnum1];
+            object cp_card1 = handy[rnum1];
             int rnum2 = rnd.Next(1, 10);
+            return total;
         }
     }
 }
