@@ -19,11 +19,11 @@ namespace OOP_assessment_3
         public Deck()
         {
             Cards = new List<Card>(52);
-            for (int i =1; i < 5; i++)
+            for (int i = 1; i < 5; i++)
             {
                 for (int j = 1; j < 14; j++)
                 {
-                    Cards.Add(new Card(i, j));
+                    Cards.Add(new Card(j, i));
                 }
             }
             return;
@@ -54,37 +54,30 @@ namespace OOP_assessment_3
         public void Deal(string opponent)
         {
             Human h = new Human();
-            Human h2 = new Human();
             Computer c = new Computer();
 
             if (opponent == "P")
             {
                 for (int i = 0; i > 10; i++)
                 {
-                    object temp = Cards[i];
-                    h.hand.Add((Hand)temp);
-                    Cards.Remove((Card)temp);
+                    h.hand.Add(Cards[i]);
+                    Cards.Remove(Cards[i]);
                 }
                 for (int i = 0; i > 10; i++)
                 {
-                    object temp = Cards[i];
-                    h2.hand.Add((Hand)temp);
-                    Cards.Remove((Card)temp);
+                    h.hand2.Add(Cards[i]);
                 }
             }
             else
             {
                 for (int i = 0; i > 10; i++)
                 {
-                    object temp = Cards[i];
-                    h.hand.Add((Hand)temp);
-                    Cards.Remove((Card)temp);
+                    h.hand.Add(Cards[i]);
+                    Cards.Remove(Cards[i]);
                 }
                 for (int i = 0; i > 10; i++)
                 {
-                    object temp = Cards[i];
-                    c.hand.Add((Hand)temp);
-                    Cards.Remove((Card)temp);
+                    c.chand.Add(Cards[i]);
                 }
             }
 

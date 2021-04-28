@@ -16,8 +16,13 @@ namespace OOP_assessment_3
         //Where the program runs
         static void Main(string[] args)
         {
-            //Making objects so we can use the class attributes
+
+            ////Making objects so we can use the class attributes
             Deck d = new Deck();
+            foreach (Card i in d.Cards)
+            {
+                Console.WriteLine(i.num + " of " + i.suit);
+            }
             Human h = new Human();
             Computer cp = new Computer();
             Program p = new Program();
@@ -69,20 +74,21 @@ namespace OOP_assessment_3
             Deck d = new Deck();
             //Dealing the cards out
             d.Deal(opponent);
-            Console.WriteLine($"Here is your hand: {h.hand}");        //Fix the hands you need to make a computer hand and a player 2 hand
+            Console.WriteLine($"Here is your hand: {h.hand}");
+            h.Play(h.hand);
+            c.Play(c.chand);
         }
 
         //For player vs player
         public void PvP(string opponent)
         {
             Human h = new Human();
-            Human h2 = new Human();
             Deck d = new Deck();
             //Dealing the cards out
             d.Deal(opponent);
             Console.WriteLine("Player 1's turn.");
             h.Play(h.hand);
-            h.Play(h2.hand);
+            Console.WriteLine("Player 2's turn.");
         }
     }
 }
