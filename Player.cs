@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace OOP_assessment_3
-{ 
+{
     //Player class
     abstract class Player
     {
@@ -21,7 +21,7 @@ namespace OOP_assessment_3
             set { _ID = value; }
         }
 
-        private List<Card> _hand; 
+        private List<Card> _hand;
         public List<Card> hand
         {
             get { return _hand; }
@@ -49,76 +49,12 @@ namespace OOP_assessment_3
             chand = new List<Card>(10);
         }
 
-        public abstract int Play(List<Card> hand);
-    }
-
-    class Human : Player
-    {
-        public override int Play(List<Card> hand)
+        //Player methods
+        public abstract (int, int) Play(List<Card> hand);
+        public int cardNumCheck(Card _card)
         {
-            Deck d = new Deck();
-            int total = 0;
-            Console.WriteLine($"Here is your hand: {hand}");
-            Console.WriteLine("Please choose 2 cards.");
-            bool loop_done = true;
-            while (loop_done == true)
-            {
-                try
-                {
-                    Console.WriteLine("Card 1 rank: ");
-                    string card1_rank = Console.ReadLine();
-                    foreach (string i in hand)
-                    {
-                        if (card1_rank == i.suit)
-                        {
-                            loop_done = false;
-                        }
-                        else
-                        {
-                            throw new WrongInputException("That is the wrong input. Please input a card in your hand.");
-                        }
-
-                    }
-                }
-                catch (WrongInputException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            loop_done = true;
-            while (loop_done == true)
-            {
-                try
-                {
-                    Console.WriteLine("Card 2: ");
-                    string card2 = Console.ReadLine();
-                    foreach (object i in d.Cards)
-                    {
-                        int j = Convert.ToInt32(i);
-                        object temp = hand[j];
-                        if (temp.ToString() == card2)
-                        {
-                            loop_done = false;
-                        }
-                        else
-                        {
-                            throw new WrongInputException("That is the wrong input. Please input a card in your hand.");
-                        }
-
-                    }
-                }
-                catch (WrongInputException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            int card1_num;
-            int card2_num;
-            return total;
-        }
-        public void cardNumCheck(string card)
-        {
-            int card_num;
+            string card = _card.ToString();
+            int card_num = 0;
             if (card.Contains("Ace") == true)
             {
                 card_num = 14;
@@ -155,20 +91,93 @@ namespace OOP_assessment_3
             {
                 card_num = 9;
             }
+            else if (card.Contains("10") == true)
+            {
+                card_num = 10;
+            }
+            else if (card.Contains("Jack") == true)
+            {
+                card_num = 11;
+            }
+            else if (card.Contains("Queen") == true)
+            {
+                card_num = 12;
+            }
+            else if (card.Contains("King") == true)
+            {
+                card_num = 13;
+            }
+            return card_num;
         }
     }
 
+    //Human class inherited from Player class
+    class Human : Player
+    {
+        public override (int, int) Play(List<Card> hand)
+        {
+            Deck d = new Deck(); //Making an object from the deck class
+            Console.WriteLine($"Here is your hand: {hand}");
+            Console.WriteLine("Please choose 2 cards by writing out the exact card. (rank) of (suit)");
+            bool loop_done = true;
+            while (loop_done == true)   //Loop to reinput if input is wrong
+            {
+                try
+                {
+                    //Input for card 1
+                    Console.WriteLine("Card 1: ");
+                    object _card1 = Console.ReadLine();  
+                    Card card1 = (Card)_card1;
+
+                    //Input for card 2
+                    Console.WriteLine("Card 2: ");
+                    object _card2 = Console.ReadLine();
+                    Card card2 = (Card)_card2;
+                    //Checking if the cards that were inputted are in the hand
+                    if ((hand.Contains(card1) == true) && (hand.Contains(card2)))
+                    {
+                        loop_done = false;
+                        //Call the cardNumCheck to find out the value of the card
+                        int card1_num = cardNumCheck(card1);
+                        int card2_num = cardNumCheck(card2);
+                        return (card1_num, card2_num);
+                    }
+                    else
+                    {
+                        //If they are not in the hand then throw exception
+                        throw new WrongInputException("That is the wrong input. Please input a card in your hand.");
+                    }
+                }
+                catch (WrongInputException e)
+                {
+                    //Ouputs exception message and then loops again
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+    }
+
+    //Computer class
     class Computer : Player
     {
-        public override int Play(List<Card> hand)
+        public override (int, int) Play(List<Card> hand)
         {
-            int total = 0;
             Console.WriteLine("Computers turn");
             Random rnd = new Random();
+
+            //Selecting a random card
             int rnum1 = rnd.Next(1, 10);
-            object cp_card1 = hand[rnum1];
+            Card cp_card1 = hand[rnum1];
+            hand.Remove(hand[rnum1]);
+            int cp_card1_num = cardNumCheck(cp_card1);
+
+            //Selecting a second random card
             int rnum2 = rnd.Next(1, 10);
-            return total;
+            Card cp_card2 = hand[rnum2];
+            hand.Remove(hand[rnum2]);
+            int cp_card2_num = cardNumCheck(cp_card2);
+
+            return (cp_card1_num, cp_card2_num);
         }
     }
 }

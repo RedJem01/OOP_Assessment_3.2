@@ -19,20 +19,24 @@ namespace OOP_assessment_3
 
             ////Making objects so we can use the class attributes
             Deck d = new Deck();
+            Program p = new Program();
+            //For testing purposes
             foreach (Card i in d.Cards)
             {
                 Console.WriteLine(i.num + " of " + i.suit);
             }
-            Human h = new Human();
-            Computer cp = new Computer();
-            Program p = new Program();
 
             string opponent;
 
+            //Introduction and instructions
             Console.WriteLine("Welcome to Lincoln. A card game where you and your opponent choose two cards and whoever has the highest total wins the round.");
             Console.WriteLine("Would you like to play 2 player or against a computer? P or C?");
             string input = Console.ReadLine();
 
+            //Shuffling the deck
+            d.Shuffle();
+
+            //Checking if they want to play against a computer or another player
             bool done = true;
             while (done == true)
             {
@@ -63,8 +67,6 @@ namespace OOP_assessment_3
                     Console.WriteLine(e.Message);
                 }
             }
-            //Shuffling the deck
-            d.Shuffle();
         }
         //For player vs computer 
         public void PvC(string opponent)
@@ -75,6 +77,7 @@ namespace OOP_assessment_3
             //Dealing the cards out
             d.Deal(opponent);
             Console.WriteLine($"Here is your hand: {h.hand}");
+            //Calling the play function for the player and the computer
             h.Play(h.hand);
             c.Play(c.chand);
         }
@@ -89,6 +92,7 @@ namespace OOP_assessment_3
             Console.WriteLine("Player 1's turn.");
             h.Play(h.hand);
             Console.WriteLine("Player 2's turn.");
+            h.Play(h.hand);
         }
     }
 }

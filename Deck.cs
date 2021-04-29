@@ -15,9 +15,10 @@ namespace OOP_assessment_3
             set { _Cards = value; }
         }
 
-        // initializing the Cards list
+        //Initializing the Cards list using the deck class constructor
         public Deck()
         {
+            //Making each card and adding it to the list
             Cards = new List<Card>(52);
             for (int i = 1; i < 5; i++)
             {
@@ -41,6 +42,7 @@ namespace OOP_assessment_3
             Random rnd = new Random();
             for (int i = 0; i < 53; i++)
             {
+                //making two random numbers and then swapping the cards a those numbers position
                 int rnum1 = rnd.Next(1, 52);
                 int rnum2 = rnd.Next(1, 52);
                 object a = Cards[rnum1];
@@ -53,10 +55,12 @@ namespace OOP_assessment_3
         //Dealing out the cards function
         public void Deal(string opponent)
         {
+            //Objects for humand and computer class
             Human h = new Human();
             Computer c = new Computer();
 
-            if (opponent == "P")
+            //If it is pvp then add 10 cards to the two human hands
+            if (opponent == "P")  
             {
                 for (int i = 0; i > 10; i++)
                 {
@@ -68,6 +72,7 @@ namespace OOP_assessment_3
                     h.hand2.Add(Cards[i]);
                 }
             }
+            //If it is pvc then add 10 cards to the human and the computer hand
             else
             {
                 for (int i = 0; i > 10; i++)

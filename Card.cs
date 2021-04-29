@@ -20,8 +20,10 @@ namespace OOP_assessment_3
             set { _suit = value; }
         }
 
+        //Card class constructor
         public Card(int rankNum, int suitNum)
         {
+            //Setting the suit and rank for each card
             switch (suitNum)
             {
                 case 1: suit = "Spades"; break;
