@@ -21,17 +21,15 @@ namespace OOP_assessment_3
             Deck d = new Deck();
             Program p = new Program();
             //For testing purposes
-            foreach (Card i in d.Cards)
-            {
-                Console.WriteLine(i.num + " of " + i.suit);
-            }
+            //foreach (Card i in d.Cards)
+            //{
+            //    Console.WriteLine(i.num + " of " + i.suit);
+            //}
 
             string opponent;
 
             //Introduction and instructions
             Console.WriteLine("Welcome to Lincoln. A card game where you and your opponent choose two cards and whoever has the highest total wins the round.");
-            Console.WriteLine("Would you like to play 2 player or against a computer? P or C?");
-            string input = Console.ReadLine();
 
             //Shuffling the deck
             d.Shuffle();
@@ -43,7 +41,7 @@ namespace OOP_assessment_3
                 try
                 {
                     Console.WriteLine("Would you like  to play against another player or the computer? (P or C?)");
-                    string choice = Console.ReadLine();
+                    string input = Console.ReadLine();
                     if ((input == "P") || (input == "p"))
                     {
                         opponent = "P";
@@ -76,7 +74,6 @@ namespace OOP_assessment_3
             Deck d = new Deck();
             //Dealing the cards out
             d.Deal(opponent);
-            Console.WriteLine($"Here is your hand: {h.hand}");
             //Calling the play function for the player and the computer
             h.Play(h.hand);
             c.Play(c.chand);

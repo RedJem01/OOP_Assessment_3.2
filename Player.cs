@@ -117,7 +117,11 @@ namespace OOP_assessment_3
         public override (int, int) Play(List<Card> hand)
         {
             Deck d = new Deck(); //Making an object from the deck class
-            Console.WriteLine($"Here is your hand: {hand}");
+            Console.WriteLine("Here is your hand: ");
+            foreach (Card i in hand)
+            {
+                Console.WriteLine(i.num + " of " + i.suit);
+            }
             Console.WriteLine("Please choose 2 cards by writing out the exact card. (rank) of (suit)");
             bool loop_done = true;
             while (loop_done == true)   //Loop to reinput if input is wrong
@@ -125,9 +129,23 @@ namespace OOP_assessment_3
                 try
                 {
                     //Input for card 1
-                    Console.WriteLine("Card 1: ");
-                    object _card1 = Console.ReadLine();  
-                    Card card1 = (Card)_card1;
+                    Console.WriteLine("Card 1 rank: ");
+                    string card1Rank = Console.ReadLine();
+                    Console.WriteLine("Card 1 suit: ");
+                    string card1Suit = Console.ReadLine();
+                    foreach (Card i in hand)
+                    {
+                        if ((i.num == card1Rank) && (i.suit == card1Suit))
+                        {
+                            loop_done = false;
+                        }
+                        else
+                        {
+                            //If they are not in the hand then throw exception
+                            throw new WrongInputException("That is the wrong input. Please input a card in your hand.");
+                        }
+
+                    }
 
                     //Input for card 2
                     Console.WriteLine("Card 2: ");
@@ -154,6 +172,7 @@ namespace OOP_assessment_3
                     Console.WriteLine(e.Message);
                 }
             }
+            return (1, 1);
         }
     }
 

@@ -58,18 +58,23 @@ namespace OOP_assessment_3
             //Objects for humand and computer class
             Human h = new Human();
             Computer c = new Computer();
+            Random rnd = new Random();
 
             //If it is pvp then add 10 cards to the two human hands
             if (opponent == "P")  
             {
-                for (int i = 0; i > 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    h.hand.Add(Cards[i]);
-                    Cards.Remove(Cards[i]);
+                    int rnum = rnd.Next(1, 52);
+                    Card cardToAdd = Cards[rnum];
+                    h.hand.Add(cardToAdd);
+                    Cards.Remove(cardToAdd);
                 }
-                for (int i = 0; i > 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    h.hand2.Add(Cards[i]);
+                    int rnum = rnd.Next(1, 52);
+                    Card cardToAdd = Cards[rnum];
+                    h.hand2.Add(cardToAdd);
                 }
             }
             //If it is pvc then add 10 cards to the human and the computer hand
@@ -77,12 +82,16 @@ namespace OOP_assessment_3
             {
                 for (int i = 0; i > 10; i++)
                 {
-                    h.hand.Add(Cards[i]);
-                    Cards.Remove(Cards[i]);
+                    int rnum = rnd.Next(1, 52);
+                    Card cardToAdd = Cards[rnum];
+                    h.hand.Add(cardToAdd);
+                    Cards.Remove(cardToAdd);
                 }
                 for (int i = 0; i > 10; i++)
                 {
-                    c.chand.Add(Cards[i]);
+                    int rnum = rnd.Next(1, 52);
+                    Card cardToAdd = Cards[rnum];
+                    h.chand.Add(cardToAdd);
                 }
             }
 
