@@ -91,7 +91,7 @@ namespace OOP_assessment_3
                 {
                     int rnum = rnd.Next(1, 52);
                     Card cardToAdd = Cards[rnum];
-                    h.chand.Add(cardToAdd);
+                    h.hand2.Add(cardToAdd);
                 }
             }
 

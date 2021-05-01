@@ -16,43 +16,40 @@ namespace OOP_assessment_3
         //Where the program runs
         static void Main(string[] args)
         {
-
-            ////Making objects so we can use the class attributes
-            Deck d = new Deck();
             Program p = new Program();
-            //For testing purposes
-            //foreach (Card i in d.Cards)
-            //{
-            //    Console.WriteLine(i.num + " of " + i.suit);
-            //}
+            p.Menu();
+        }
 
-            string opponent;
-
-            //Introduction and instructions
-            Console.WriteLine("Welcome to Lincoln. A card game where you and your opponent choose two cards and whoever has the highest total wins the round.");
-
-            //Shuffling the deck
-            d.Shuffle();
-
-            //Checking if they want to play against a computer or another player
+        public void Menu()
+        {
+            //Menu
+            Console.WriteLine("*****************************");
+            Console.WriteLine("* 1. Rules                  *");
+            Console.WriteLine("* 2. Play against computer  *");
+            Console.WriteLine("* 3. Play against player    *");
+            Console.WriteLine("*****************************");
+            Console.WriteLine("\n Please input your choice");
+            //Checking if they want to play against a computer or another player or want to see the rules
             bool done = true;
             while (done == true)
             {
                 try
                 {
-                    Console.WriteLine("Would you like  to play against another player or the computer? (P or C?)");
-                    string input = Console.ReadLine();
-                    if ((input == "P") || (input == "p"))
+                    string choice = Console.ReadLine();
+                    if (choice == "1")
                     {
-                        opponent = "P";
-                        p.PvP(opponent);
-                        done = false;
+                        //IRules
+                        Console.WriteLine("Rules: Each player gets 10 cards. When it's your go you choose two cards. The program adds up your two cards and the other player's two cards and whoever's total is higher wins the hand.");
                     }
-                    else if ((input == "C") || (input == "c"))
+                    else if (choice == "2")
                     {
-                        opponent = "C";
-                        p.PvC(opponent);
-                        done = false;
+                        string opponent = "P";
+                        PvC(opponent);
+                    }
+                    else if (choice == "3")
+                    {
+                        string opponent = "C";
+                        PvP(opponent);
                     }
                     else
                     {
@@ -66,30 +63,82 @@ namespace OOP_assessment_3
                 }
             }
         }
+
         //For player vs computer 
         public void PvC(string opponent)
         {
+            //Class objects
             Human h = new Human();
             Computer c = new Computer();
             Deck d = new Deck();
+
+            //Shuffling the deck
+            d.Shuffle();
+            h.hand.Clear();
+            h.hand2.Clear();
+
             //Dealing the cards out
             d.Deal(opponent);
+
             //Calling the play function for the player and the computer
-            h.Play(h.hand);
-            c.Play(c.chand);
+            (int hCardValue1, int hCardValue2) = h.Play(h.hand);
+            int humanTotal = hCardValue1 + hCardValue2;
+            Console.WriteLine($"The total of your two cards is {humanTotal}");
+
+            (int cCardValue1, int cCardValue2) = c.Play(c.hand2);
+            int computerTotal = cCardValue1 + cCardValue2;
+            Console.WriteLine($"The total of the computer's two cards is {computerTotal}");
+
+            //Checking which total is bigger and who won the hand
+            if (humanTotal > computerTotal)
+            {
+                Console.WriteLine("You have the highest total so you win this hand");
+                h.Score += 1;
+            }
+            else
+            {
+                Console.WriteLine("The computer has the highest total so it wins this hand");
+                c.Score2 += 1;
+            }
         }
 
         //For player vs player
         public void PvP(string opponent)
         {
+            //Class objects
             Human h = new Human();
             Deck d = new Deck();
+
+            //Shuffling the deck
+            d.Shuffle();
+            h.hand.Clear();
+            h.hand2.Clear();
+
             //Dealing the cards out
             d.Deal(opponent);
-            Console.WriteLine("Player 1's turn.");
-            h.Play(h.hand);
-            Console.WriteLine("Player 2's turn.");
-            h.Play(h.hand);
+
+            //Calling the play functions for each player
+            Console.WriteLine("Player 1's turn");
+            (int h1CardValue1, int h1CardValue2) = h.Play(h.hand);
+            int h1Total = h1CardValue1 + h1CardValue2;
+            Console.WriteLine($"Player 1: The total of your two cards is {h1Total}");
+
+            Console.WriteLine("Player 2's turn");
+            (int h2CardValue1, int h2CardValue2) = h.Play(h.hand);
+            int h2Total = h2CardValue1 + h2CardValue2;
+            Console.WriteLine($"Player 2:The total of your two cards is {h2Total}");
+
+            //Checking which total is bigger and who won the hand
+            if (h1Total > h2Total)
+            {
+                Console.WriteLine("Player 1: You have the highest total so you win this hand");
+                h.Score += 1;
+            }
+            else
+            {
+                Console.WriteLine("Player 2:You have the highest total so you win this hand");
+                h.Score2 += 1;
+            }
         }
     }
 }
