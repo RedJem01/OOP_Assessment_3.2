@@ -31,12 +31,12 @@ namespace OOP_assessment_3
 
         public Player()
         {
-            hand = new List<Card>(10);
+            hand = new Hand();
         }
 
         //Player methods
-        public abstract (int, int) Play(List<Card> hand);
-        public static int cardNumCheck(Card card)
+        public abstract int Play(Hand hand);
+        public int cardNumCheck(Card card)
         {
             int card_num = 0;
             if (card.num == "Ace")
@@ -98,7 +98,7 @@ namespace OOP_assessment_3
     //Human class inherited from Player class
     class Human : Player
     {
-        public override (int, int) Play(List<Card> hand)
+        public override int Play(Hand hand)
         {
             int j = 1;
             Console.WriteLine("Here is your hand: ");
@@ -115,9 +115,10 @@ namespace OOP_assessment_3
             //Input for card 2
             Console.WriteLine("Card 2: ");
             int cardValue2 = cardInput();
-                    
+
+            int total = cardValue + cardValue2;
             
-            return (cardValue, cardValue2);
+            return total;
         }
 
         public int cardInput()
@@ -128,7 +129,7 @@ namespace OOP_assessment_3
                 try
                 {
                     string cardChoice = Console.ReadLine();
-                    Card card = hand[int.Parse(cardChoice)];
+                    Card card = hand[int.Parse(cardChoice) - 1];
                     loop_done = false;
                     int cardValue = cardNumCheck(card);
                     return cardValue;
@@ -146,7 +147,7 @@ namespace OOP_assessment_3
     //Computer class
     class Computer : Player
     {
-        public override (int, int) Play(List<Card> hand)
+        public override int Play(Hand hand)
         {
             Console.WriteLine("Computers turn");
             Random rnd = new Random();
@@ -165,7 +166,9 @@ namespace OOP_assessment_3
             Card cpCard2 = cp_card2;
             int cp_card2_num = cardNumCheck(cpCard2);
 
-            return (cp_card1_num, cp_card2_num);
+            int total = cp_card1_num + cp_card2_num;
+
+            return total;
         }
     }
 }

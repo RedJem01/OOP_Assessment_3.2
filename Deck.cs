@@ -34,6 +34,7 @@ namespace OOP_assessment_3
         public void isEmpty()
         {
             Console.WriteLine("There are no more cards left.");
+
         }
         //Shuffling the deck fucntion
         public void Shuffle()
@@ -53,48 +54,26 @@ namespace OOP_assessment_3
         }
 
         //Dealing out the cards function
-        public void Deal(string opponent)
+        public void Deal()
         {
             //Objects for humand and computer class
             Human h = new Human();
             Computer c = new Computer();
             Random rnd = new Random();
 
-            //If it is pvp then add 10 cards to the two human hands
-            if (opponent == "P")  
+            for (int i = 0; i > 10; i++)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    int rnum = rnd.Next(1, 52);
-                    Card cardToAdd = Cards[rnum];
-                    h.hand.Add(cardToAdd);
-                    Cards.Remove(cardToAdd);
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    int rnum = rnd.Next(1, 52);
-                    Card cardToAdd = Cards[rnum];
-                    h.hand2.Add(cardToAdd);
-                }
+                int rnum = rnd.Next(1, 52);
+                Card cardToAdd = Cards[rnum];
+                h.hand.Add(cardToAdd);
+                Cards.Remove(cardToAdd);
             }
-            //If it is pvc then add 10 cards to the human and the computer hand
-            else
+            for (int i = 0; i > 10; i++)
             {
-                for (int i = 0; i > 10; i++)
-                {
-                    int rnum = rnd.Next(1, 52);
-                    Card cardToAdd = Cards[rnum];
-                    h.hand.Add(cardToAdd);
-                    Cards.Remove(cardToAdd);
-                }
-                for (int i = 0; i > 10; i++)
-                {
-                    int rnum = rnd.Next(1, 52);
-                    Card cardToAdd = Cards[rnum];
-                    h.hand2.Add(cardToAdd);
-                }
+                int rnum = rnd.Next(1, 52);
+                Card cardToAdd = Cards[rnum];
+                c.hand.Add(cardToAdd);
             }
-
         }
     }
 }

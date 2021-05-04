@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace OOP_Assessment_3
+namespace OOP_assessment_3
 {
     class Hand
     {
