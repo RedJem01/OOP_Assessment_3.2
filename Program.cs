@@ -169,65 +169,7 @@ namespace OOP_assessment_3
                 while (loop == true)
                 {
                     Console.WriteLine("Both the totals were the same");
-                    (int cardNum, int cardNum2) = Draw(opponent);
-                    if (cardNum > cardNum2)
-                    {
-                        h.Score += 1;
-                        loop = false;
-                    }
-                    else if (cardNum < cardNum2)
-                    {
-                        h.Score2 += 1;
-                        loop = false;
-                    }
-                }
-            }
-        }
-
-        //For player vs player
-        public void PvP(string opponent)
-        {
-            //Class objects
-            Human h = new Human();
-            Deck d = new Deck();
-
-            //Shuffling the deck
-            d.Shuffle();
-            h.hand.Clear();
-            h.hand2.Clear();
-
-            //Dealing the cards out
-            d.Deal(opponent);
-
-            //Calling the play functions for each player
-            Console.WriteLine("Player 1's turn");
-            (int h1CardValue1, int h1CardValue2) = h.Play(h.hand);
-            int h1Total = h1CardValue1 + h1CardValue2;
-            Console.WriteLine($"Player 1: The total of your two cards is {h1Total}");
-
-            Console.WriteLine("Player 2's turn");
-            (int h2CardValue1, int h2CardValue2) = h.Play(h.hand);
-            int h2Total = h2CardValue1 + h2CardValue2;
-            Console.WriteLine($"Player 2:The total of your two cards is {h2Total}");
-
-            //Checking which total is bigger and who won the hand
-            if (h1Total > h2Total)
-            {
-                Console.WriteLine("Player 1: You have the highest total so you win this hand");
-                h.Score += 1;
-            }
-            else if (h1Total < h2Total)
-            {
-                Console.WriteLine("Player 2:You have the highest total so you win this hand");
-                h.Score2 += 1;
-            }
-            else
-            {
-                bool loop = true;
-                while (loop == true)
-                {
-                    Console.WriteLine("Both the totals were the same");
-                    (int cardNum, int cardNum2) = Draw(opponent);
+                    (int cardNum, int cardNum2) = Draw();
                     if (cardNum > cardNum2)
                     {
                         h.Score += 1;
@@ -243,28 +185,22 @@ namespace OOP_assessment_3
         }
 
         //Draw function for if the players have the same total or same score at the end
-        public (int, int) Draw(string opponent)
+        public (int, int) Draw()
         {
             Deck d = new Deck();
             Human h = new Human();
+            Computer c = new Computer();
 
             d.Shuffle();
 
             Console.WriteLine("Player 1 here is your random card:");
             Console.WriteLine(d.Cards[0]);
 
-            if (opponent == "P")
-            {
-                Console.WriteLine("Player 2 here is your random card:");
-            }
-            else
-            {
-                Console.WriteLine("Here is the computer's card:");
-            }
+            Console.WriteLine("Here is the computer's card:");
             Console.WriteLine(d.Cards[1]);
 
             int cardNum = h.cardNumCheck(d.Cards[0]);
-            int cardNum2 = h.cardNumCheck(d.Cards[1]);
+            int cardNum2 = c.cardNumCheck(d.Cards[1]);
 
             return (cardNum, cardNum2);
         }

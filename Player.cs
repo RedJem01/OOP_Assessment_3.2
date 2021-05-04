@@ -14,13 +14,6 @@ namespace OOP_assessment_3
             set { _Score = value; }
         }
 
-        private int _Score2;
-        public int Score2
-        {
-            get { return _Score2; }
-            set { _Score2 = value; }
-        }
-
         private int _ID;
         public int ID
         {
@@ -28,29 +21,22 @@ namespace OOP_assessment_3
             set { _ID = value; }
         }
 
-        private List<Card> _hand;
-        public List<Card> hand
+        private Hand _hand;
+        public Hand hand
         {
             get { return _hand; }
             set { _hand = value; }
         }
 
-        private List<Card> _hand2;
-        public List<Card> hand2
-        {
-            get { return _hand2; }
-            set { _hand2 = value; }
-        }
 
         public Player()
         {
             hand = new List<Card>(10);
-            hand2 = new List<Card>(10);
         }
 
         //Player methods
         public abstract (int, int) Play(List<Card> hand);
-        public int cardNumCheck(Card card)
+        public static int cardNumCheck(Card card)
         {
             int card_num = 0;
             if (card.num == "Ace")
