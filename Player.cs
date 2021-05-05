@@ -21,21 +21,21 @@ namespace OOP_assessment_3
             set { _ID = value; }
         }
 
-        private Hand _hand;
-        public Hand hand
+        private Hand _handList;
+        public Hand handList
         {
-            get { return _hand; }
-            set { _hand = value; }
+            get { return _handList; }
+            set { _handList = value; }
         }
 
 
         public Player()
         {
-            hand = new Hand();
+            handList = new Hand();
         }
 
         //Player methods
-        public abstract int Play(Hand hand);
+        public abstract int Play(List<Card> hand);
         public int cardNumCheck(Card card)
         {
             int card_num = 0;
@@ -98,7 +98,7 @@ namespace OOP_assessment_3
     //Human class inherited from Player class
     class Human : Player
     {
-        public override int Play(Hand hand)
+        public override int Play(List<Card> hand)
         {
             int j = 1;
             Console.WriteLine("Here is your hand: ");
@@ -110,18 +110,18 @@ namespace OOP_assessment_3
             Console.WriteLine("Please choose 2 cards by writing out the number before the card");
             //Input for card 1
             Console.WriteLine("Card 1: ");
-            int cardValue = cardInput();
+            int cardValue = cardInput(hand);
 
             //Input for card 2
             Console.WriteLine("Card 2: ");
-            int cardValue2 = cardInput();
+            int cardValue2 = cardInput(hand);
 
             int total = cardValue + cardValue2;
             
             return total;
         }
 
-        public int cardInput()
+        public int cardInput(List<Card> hand)
         {
             bool loop_done = true;
             while (loop_done == true)   //Loop to reinput if input is wrong
@@ -147,7 +147,7 @@ namespace OOP_assessment_3
     //Computer class
     class Computer : Player
     {
-        public override int Play(Hand hand)
+        public override int Play(List<Card> hand)
         {
             Console.WriteLine("Computers turn");
             Random rnd = new Random();
@@ -162,7 +162,7 @@ namespace OOP_assessment_3
             //Selecting a second random card
             int rnum2 = rnd.Next(0, 9);
             Card cp_card2 = hand[rnum2];
-            hand.Remove(hand[rnum2]);
+            hand.Remove(handList.hand[rnum2]);
             Card cpCard2 = cp_card2;
             int cp_card2_num = cardNumCheck(cpCard2);
 

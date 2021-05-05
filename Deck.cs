@@ -65,14 +65,14 @@ namespace OOP_assessment_3
             {
                 int rnum = rnd.Next(1, 52);
                 Card cardToAdd = Cards[rnum];
-                h.hand.Add(cardToAdd);
+                h.handList.hand.Add(cardToAdd);
                 Cards.Remove(cardToAdd);
             }
             for (int i = 0; i > 10; i++)
             {
                 int rnum = rnd.Next(1, 52);
                 Card cardToAdd = Cards[rnum];
-                c.hand.Add(cardToAdd);
+                c.handList.hand.Add(cardToAdd);
             }
         }
     }

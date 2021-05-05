@@ -119,8 +119,8 @@ namespace OOP_assessment_3
 
             //Shuffling the deck
             d.Shuffle();
-            h.hand.Clear();
-            c.hand.Clear();
+            h.handList.hand.Clear();
+            c.handList.hand.Clear();
 
             //Dealing the cards out
             d.Deal();
@@ -129,10 +129,10 @@ namespace OOP_assessment_3
             while (bloop == true)
             {
                 //Calling the play function for the player and the computer
-                int hTotal = h.Play(h.hand);
+                int hTotal = h.Play(h.handList.hand);
                 Console.WriteLine($"The total of your two cards is {hTotal}");
 
-                int cTotal = c.Play(c.hand);
+                int cTotal = c.Play(c.handList.hand);
                 Console.WriteLine($"The total of the computer's two cards is {cTotal}");
 
                 //Checking which total is bigger and who won the hand
@@ -157,10 +157,10 @@ namespace OOP_assessment_3
                         Console.WriteLine("Both the totals were the same. Whoever wins the nest round gets 2 hands");
 
                         //They replay and whoever wins gets 2 added to their score instead of 1
-                        int hdTotal = h.Play(h.hand);
+                        int hdTotal = h.Play(h.handList.hand);
                         Console.WriteLine($"The total of your two cards is {hdTotal}");
 
-                        int cdTotal = c.Play(c.hand);
+                        int cdTotal = c.Play(c.handList.hand);
                         Console.WriteLine($"The total of the computer's two cards is {cdTotal}");
 
                         //Checking who won
@@ -180,7 +180,7 @@ namespace OOP_assessment_3
                 }
 
                 //If there are no cards left in the hand
-                if ((c.hand.Count == 0) && (h.hand.Count == 0))
+                if ((c.handList.hand.Count == 0) && (h.handList.hand.Count == 0))
                 {
                     d.isEmpty();
                     bloop = false;
