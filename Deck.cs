@@ -44,13 +44,18 @@ namespace OOP_assessment_3
             for (int i = 0; i < 53; i++)
             {
                 //making two random numbers and then swapping the cards a those numbers position
-                int rnum1 = rnd.Next(1, 52);
-                int rnum2 = rnd.Next(1, 52);
+                int rnum1 = rnd.Next(52);
+                int rnum2 = rnd.Next(52);
                 object a = Cards[rnum1];
                 object b = Cards[rnum2];
                 Cards[rnum2] = (Card)a;
                 Cards[rnum1] = (Card)b;
+                
             }
+            //foreach (Card j in Cards)
+            //{
+            //    Console.WriteLine($"{j.num} of {j.suit}");
+            //}
         }
 
         //Dealing out the cards function
@@ -61,16 +66,16 @@ namespace OOP_assessment_3
             Computer c = new Computer();
             Random rnd = new Random();
 
-            for (int i = 0; i > 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                int rnum = rnd.Next(1, 52);
+                int rnum = rnd.Next(52 - i);
                 Card cardToAdd = Cards[rnum];
                 h.handList.hand.Add(cardToAdd);
                 Cards.Remove(cardToAdd);
             }
-            for (int i = 0; i > 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                int rnum = rnd.Next(1, 52);
+                int rnum = rnd.Next(52 - (i * 2));
                 Card cardToAdd = Cards[rnum];
                 c.handList.hand.Add(cardToAdd);
             }

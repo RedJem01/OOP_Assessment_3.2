@@ -31,7 +31,7 @@ namespace OOP_assessment_3
             Console.WriteLine("* 2. Play against computer  *");
             Console.WriteLine("* 3. Exit program           *");
             Console.WriteLine("*****************************");
-            Console.WriteLine("\n Please input your choice");
+            Console.WriteLine("\nPlease input your choice\n");
 
             //Checking if they want to play against a computer or another player or want to see the rules
             bool done = true;
@@ -116,6 +116,10 @@ namespace OOP_assessment_3
             Human h = new Human();
             Computer c = new Computer();
             Deck d = new Deck();
+            //foreach (Card i in d.Cards)
+            //{
+            //    Console.WriteLine($"{i.num} of {i.suit}");
+            //}
 
             //Shuffling the deck
             d.Shuffle();
