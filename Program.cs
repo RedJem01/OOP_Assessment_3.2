@@ -45,7 +45,7 @@ namespace OOP_assessment_3
                     if (choice == "1")
                     {
                         
-                        Console.WriteLine("Rules: Each player gets 10 cards. When it's your go you choose two cards. The program adds up your two cards and the other player's two cards and whoever's total is higher wins the hand.");
+                        Console.WriteLine("Rules: Each player gets 10 cards. When it's your go you choose two cards. The program adds up your two cards and the other player's two cards and whoever's total is higher wins the hand. Ace is 14, King is 13, Queen is 12, Jack is 11, all the other cards are thier own numbers.");
                         Menu();
                     }
                    
@@ -53,7 +53,7 @@ namespace OOP_assessment_3
                     else if (choice == "2")
                     {
                         //Calling the function to start playing
-                        PvC();
+                        (h.Score, c.Score) = PvC();
 
                         //Checking who won overall
                         if (h.Score > c.Score)
@@ -110,7 +110,7 @@ namespace OOP_assessment_3
         }
 
         //For player vs computer 
-        public void PvC()
+        public (int, int) PvC()
         {
             //Class objects
             Human h = new Human();
@@ -127,7 +127,7 @@ namespace OOP_assessment_3
             c.handList.hand.Clear();
 
             //Dealing the cards out
-            d.Deal();
+            (h.handList.hand, c.handList.hand) = d.Deal(h.handList.hand, c.handList.hand);
 
             bool bloop = true;
             while (bloop == true)
@@ -137,17 +137,17 @@ namespace OOP_assessment_3
                 Console.WriteLine($"The total of your two cards is {hTotal}");
 
                 int cTotal = c.Play(c.handList.hand);
-                Console.WriteLine($"The total of the computer's two cards is {cTotal}");
+                Console.WriteLine($"\nThe total of the computer's two cards is {cTotal}");
 
                 //Checking which total is bigger and who won the hand
                 if (hTotal > cTotal)
                 {
-                    Console.WriteLine("You have the highest total so you win this hand");
+                    Console.WriteLine("\nYou have the highest total so you win this hand\n");
                     h.Score += 1;
                 }
                 else if (hTotal < cTotal)
                 {
-                    Console.WriteLine("The computer has the highest total so it wins this hand");
+                    Console.WriteLine("\nThe computer has the highest total so it wins this hand\n");
                     c.Score += 1;
                 }
 
@@ -189,16 +189,16 @@ namespace OOP_assessment_3
                     d.isEmpty();
                     bloop = false;
                 }
-
             }
+            return (h.Score, c.Score);
         }
 
         //Draw function for if the players have the same total or same score at the end
         public (int, int) Draw()
         {
-            Deck d = new Deck();
             Human h = new Human();
             Computer c = new Computer();
+            Deck d = new Deck();
 
             d.Shuffle();
 

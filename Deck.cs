@@ -39,7 +39,7 @@ namespace OOP_assessment_3
         //Shuffling the deck fucntion
         public void Shuffle()
         {
-            Console.WriteLine("Shuffling the deck.");
+            Console.WriteLine("\nShuffling the deck\n");
             Random rnd = new Random();
             for (int i = 0; i < 53; i++)
             {
@@ -59,26 +59,32 @@ namespace OOP_assessment_3
         }
 
         //Dealing out the cards function
-        public void Deal()
+        public (List<Card>, List<Card>) Deal(List<Card> hand1, List<Card> hand2)
         {
-            //Objects for humand and computer class
-            Human h = new Human();
-            Computer c = new Computer();
             Random rnd = new Random();
 
             for (int i = 0; i < 10; i++)
             {
                 int rnum = rnd.Next(52 - i);
                 Card cardToAdd = Cards[rnum];
-                h.handList.hand.Add(cardToAdd);
+                hand1.Add(cardToAdd);
                 Cards.Remove(cardToAdd);
             }
+            //foreach (Card i in h.handList.hand)
+            //{
+            //    Console.WriteLine($"{i.num} of {i.suit}");
+            //}
             for (int i = 0; i < 10; i++)
             {
-                int rnum = rnd.Next(52 - (i * 2));
+                int rnum = rnd.Next(52 - (i + 10));
                 Card cardToAdd = Cards[rnum];
-                c.handList.hand.Add(cardToAdd);
+                hand2.Add(cardToAdd);
             }
+            //foreach (Card i in c.handList.hand)
+            //{
+            //    Console.WriteLine($"{i.num} of {i.suit}");
+            //}
+            return (hand1, hand2);
         }
     }
 }

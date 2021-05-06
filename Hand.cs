@@ -8,13 +8,15 @@ namespace OOP_assessment_3
         private List<Card> _hand;
         public List<Card> hand
         {
-            get { return _hand; }
+            get
+            {
+                if (_hand == null)
+                {
+                    _hand = new List<Card>(10);
+                }
+                return _hand;
+            }
             set { _hand = value; }
-        }
-
-        public Hand()
-        {
-            hand = new List<Card>(10);
         }
     }
 }

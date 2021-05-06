@@ -24,14 +24,15 @@ namespace OOP_assessment_3
         private Hand _handList;
         public Hand handList
         {
-            get { return _handList; }
+            get
+            {
+                if (_handList == null)
+                {
+                    _handList = new Hand();
+                }
+                return _handList;
+            }
             set { _handList = value; }
-        }
-
-
-        public Player()
-        {
-            handList = new Hand();
         }
 
         //Player methods
@@ -107,10 +108,20 @@ namespace OOP_assessment_3
                 Console.WriteLine($"{j}: {i.num} of {i.suit}");
                 j++;
             }
-            Console.WriteLine("Please choose 2 cards by writing out the number before the card");
+            Console.WriteLine("\nPlease choose 2 cards by writing out the number before the card");
+
             //Input for card 1
             Console.WriteLine("Card 1: ");
             int cardValue = cardInput(hand);
+
+
+            int k = 1;
+            Console.WriteLine("Here is your hand: ");
+            foreach (Card i in hand)
+            {
+                Console.WriteLine($"{k}: {i.num} of {i.suit}");
+                k++;
+            }
 
             //Input for card 2
             Console.WriteLine("Card 2: ");
@@ -129,10 +140,20 @@ namespace OOP_assessment_3
                 try
                 {
                     string cardChoice = Console.ReadLine();
-                    Card card = hand[int.Parse(cardChoice) - 1];
-                    loop_done = false;
-                    int cardValue = cardNumCheck(card);
-                    return cardValue;
+                    int icardChoice = int.Parse(cardChoice);
+                    if (icardChoice > hand.Count || icardChoice < 0)
+                    {
+                        throw new WrongInputException("That is the wrong input. Please input a number in front of the card.");
+                    }
+                    else
+                    {
+                        Card card = hand[icardChoice - 1];
+                        hand.RemoveAt(icardChoice - 1);
+                        loop_done = false;
+                        int cardValue = cardNumCheck(card);
+                        return cardValue;
+                    }
+                    
                 }
                 catch (WrongInputException e)
                 {
@@ -153,14 +174,14 @@ namespace OOP_assessment_3
             Random rnd = new Random();
 
             //Selecting a random card
-            int rnum1 = rnd.Next(0, 9);
+            int rnum1 = rnd.Next(0, hand.Count - 1);
             Card cp_card1 = hand[rnum1];
             hand.Remove(hand[rnum1]);
             Card cpCard1 = cp_card1; 
             int cp_card1_num = cardNumCheck(cpCard1);
 
             //Selecting a second random card
-            int rnum2 = rnd.Next(0, 9);
+            int rnum2 = rnd.Next(0, hand.Count - 1);
             Card cp_card2 = hand[rnum2];
             hand.Remove(handList.hand[rnum2]);
             Card cpCard2 = cp_card2;
