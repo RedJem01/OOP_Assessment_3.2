@@ -30,12 +30,13 @@ namespace OOP_assessment_3
             return;
         }
 
-        //If the deck is empty
+        //If the hand is empty
         public void isEmpty()
         {
-            Console.WriteLine("There are no more cards left.");
+            Console.WriteLine("There are no more cards left. The program will now determine who won. If you draw then two cards will be chosen at random for you and whoever has the highest wins.");
 
         }
+
         //Shuffling the deck fucntion
         public void Shuffle()
         {

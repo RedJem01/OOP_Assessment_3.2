@@ -45,7 +45,7 @@ namespace OOP_assessment_3
                     if (choice == "1")
                     {
                         
-                        Console.WriteLine("Rules: Each player gets 10 cards. When it's your go you choose two cards. The program adds up your two cards and the other player's two cards and whoever's total is higher wins the hand. Ace is 14, King is 13, Queen is 12, Jack is 11, all the other cards are thier own numbers.");
+                        Console.WriteLine("Rules: Each player gets 10 cards. When it's your go you choose two cards. The program adds up your two cards and the other player's two cards and whoever's total is higher wins the hand. Ace is 14, King is 13, Queen is 12, Jack is 11, all the other cards are thier own numbers. You play until your hand is empty.");
                         Menu();
                     }
                    
@@ -72,7 +72,9 @@ namespace OOP_assessment_3
                             bool loop = true;
                             while (loop == true)
                             {
+                                //Calling the draw function
                                 (int cardNum, int cardNum2) = Draw();
+                                //Checking who had the highest total
                                 if (cardNum > cardNum2)
                                 {
                                     Console.WriteLine($"Player 1 won with a score of {h.Score}. Player 2's score was {c.Score}.");
@@ -102,6 +104,7 @@ namespace OOP_assessment_3
 
                     }
                 }
+                //If input is not 1, 2 or 3 then call an error and the user is asked to input again
                 catch (WrongInputException e)
                 {
                     Console.WriteLine(e.Message);
@@ -116,10 +119,6 @@ namespace OOP_assessment_3
             Human h = new Human();
             Computer c = new Computer();
             Deck d = new Deck();
-            //foreach (Card i in d.Cards)
-            //{
-            //    Console.WriteLine($"{i.num} of {i.suit}");
-            //}
 
             //Shuffling the deck
             d.Shuffle();
@@ -193,18 +192,22 @@ namespace OOP_assessment_3
             return (h.Score, c.Score);
         }
 
-        //Draw function for if the players have the same total or same score at the end
+        //Draw function for if the players have the same score at the end
         public (int, int) Draw()
         {
+            //Class objects
             Human h = new Human();
             Computer c = new Computer();
             Deck d = new Deck();
 
+            //To shuffle the deck
             d.Shuffle();
 
+            //Random card for the player
             Console.WriteLine("Here is your random card:");
             Console.WriteLine(d.Cards[0]);
 
+            //Random card for the computer
             Console.WriteLine("Here is the computer's card:");
             Console.WriteLine(d.Cards[1]);
 
