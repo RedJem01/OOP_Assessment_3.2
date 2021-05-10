@@ -59,10 +59,12 @@ namespace OOP_assessment_3
                         if (h.Score > c.Score)
                         {
                             Console.WriteLine($"You won with a score of {h.Score}. The computer's score was {c.Score}");
+                            Menu();
                         }
                         else if (h.Score < c.Score)
                         {
                             Console.WriteLine($"The computer won with a score of {c.Score}. Your score was {h.Score}");
+                            Menu();
                         }
 
                         //In case of draw
@@ -100,7 +102,7 @@ namespace OOP_assessment_3
                     //If 1,2 or 3 were not entered
                     else
                     {
-                        throw new WrongInputException("That is the wrong input. Please input P or C.");
+                        throw new WrongInputException("That is the wrong input. Please input 1, 2 or 3.");
 
                     }
                 }

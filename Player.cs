@@ -99,6 +99,64 @@ namespace OOP_assessment_3
             }
             return card_num;
         }
+
+        public int cardNumCheck(string card)
+        {
+            int card_num = 0;
+            if (card == "Ace")
+            {
+                card_num = 14;
+            }
+            else if (card == "2")
+            {
+                card_num = 2;
+            }
+            else if (card == "3")
+            {
+                card_num = 3;
+            }
+            else if (card == "4")
+            {
+                card_num = 4;
+            }
+            else if (card == "5")
+            {
+                card_num = 5;
+            }
+            else if (card == "6")
+            {
+                card_num = 6;
+            }
+            else if (card == "7")
+            {
+                card_num = 7;
+            }
+            else if (card == "8")
+            {
+                card_num = 8;
+            }
+            else if (card == "9")
+            {
+                card_num = 9;
+            }
+            else if (card == "10")
+            {
+                card_num = 10;
+            }
+            else if (card == "Jack")
+            {
+                card_num = 11;
+            }
+            else if (card == "Queen")
+            {
+                card_num = 12;
+            }
+            else if (card == "King")
+            {
+                card_num = 13;
+            }
+            return card_num;
+        }
     }
 
     //Human class inherited from Player class
@@ -117,7 +175,7 @@ namespace OOP_assessment_3
 
             //Input for card 1
             Console.WriteLine("Card 1: ");
-            int cardValue = cardInput(hand);
+            int cardValue = cardGet(hand);
 
 
             int k = 1;
@@ -130,14 +188,14 @@ namespace OOP_assessment_3
 
             //Input for card 2
             Console.WriteLine("Card 2: ");
-            int cardValue2 = cardInput(hand);
+            int cardValue2 = cardGet(hand);
 
             int total = cardValue + cardValue2;
             
             return total;
         }
 
-        public int cardInput(List<Card> hand)
+        public int cardGet(List<Card> hand)
         {
             bool loop_done = true;
             while (loop_done == true)   //Loop to reinput if input is wrong
@@ -145,18 +203,25 @@ namespace OOP_assessment_3
                 try
                 {
                     string cardChoice = Console.ReadLine();
-                    int icardChoice = int.Parse(cardChoice);
-                    if (icardChoice > hand.Count || icardChoice < 0)
+                    try
                     {
-                        throw new WrongInputException("That is the wrong input. Please input a number in front of the card.");
+                        int icardChoice = int.Parse(cardChoice);
+                        if (icardChoice > hand.Count || icardChoice < 1)
+                        {
+                            throw new WrongInputException("That is the wrong input. Please input a number in front of the card.");
+                        }
+                        else
+                        {
+                            Card card = hand[icardChoice - 1];
+                            hand.RemoveAt(icardChoice - 1);
+                            loop_done = false;
+                            int cardValue = cardNumCheck(card);
+                            return cardValue;
+                        }
                     }
-                    else
+                    catch (FormatException)
                     {
-                        Card card = hand[icardChoice - 1];
-                        hand.RemoveAt(icardChoice - 1);
-                        loop_done = false;
-                        int cardValue = cardNumCheck(card);
-                        return cardValue;
+                        Console.WriteLine("That is not a number. Please input a number in front of the card.");
                     }
                     
                 }
@@ -183,14 +248,14 @@ namespace OOP_assessment_3
             Card cp_card1 = hand[rnum1];
             hand.Remove(hand[rnum1]);
             Card cpCard1 = cp_card1; 
-            int cp_card1_num = cardNumCheck(cpCard1);
+            int cp_card1_num = cardNumCheck(cpCard1.num);
 
             //Selecting a second random card
             int rnum2 = rnd.Next(0, hand.Count - 1);
             Card cp_card2 = hand[rnum2];
             hand.Remove(handList.hand[rnum2]);
             Card cpCard2 = cp_card2;
-            int cp_card2_num = cardNumCheck(cpCard2);
+            int cp_card2_num = cardNumCheck(cpCard2.num);
 
             int total = cp_card1_num + cp_card2_num;
 
