@@ -3,8 +3,20 @@ using System.Collections.Generic;
 
 namespace OOP_assessment_3
 {
+    //Interface
+    interface IPlayer
+    {
+        public int Score { get; set; }
+
+        public Hand handList { get; set; }
+
+        public abstract int Play(List<Card> hand);
+
+        public abstract int cardNumCheck(Card card);
+    }
+
     //Player class
-    abstract class Player
+    abstract class Player : IPlayer
     {
         //Player attributes
         private int _Score;
@@ -12,13 +24,6 @@ namespace OOP_assessment_3
         {
             get { return _Score; }
             set { _Score = value; }
-        }
-
-        private int _ID;
-        public int ID
-        {
-            get { return _ID; }
-            set { _ID = value; }
         }
 
         private Hand _handList;
