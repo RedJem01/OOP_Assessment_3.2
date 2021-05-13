@@ -79,13 +79,13 @@ namespace OOP_assessment_3
                                 //Checking who had the highest total
                                 if (cardNum > cardNum2)
                                 {
-                                    Console.WriteLine($"Player 1 won with a score of {h.Score}. Player 2's score was {c.Score}.");
+                                    Console.WriteLine($"You won with a score of {h.Score}. The computer's score was {c.Score}.");
                                     loop = false;
                                     Menu();
                                 }
                                 else if (cardNum < cardNum2)
                                 {
-                                    Console.WriteLine($"Player 2 won with a score of {h.Score}. Player 1's score was {c.Score}.");
+                                    Console.WriteLine($"The computer won with a score of {h.Score}. Your score was {c.Score}.");
                                     loop = false;
                                     Menu();
                                 }

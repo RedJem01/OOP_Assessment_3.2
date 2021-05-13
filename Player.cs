@@ -240,7 +240,7 @@ namespace OOP_assessment_3
     {
         public override int Play(List<Card> hand)
         {
-            Console.WriteLine("Computers turn");
+            Console.WriteLine("\nComputers turn");
             Random rnd = new Random();
 
             //Selecting a random card
