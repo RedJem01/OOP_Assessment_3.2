@@ -11,13 +11,13 @@ namespace OOP_assessment_3
         public string num
         {
             get { return _num; }
-            set { _num = value; }
+            protected set { _num = value; }
         }
         private string _suit;
         public string suit
         {
             get { return _suit; }
-            set { _suit = value; }
+            protected set { _suit = value; }
         }
 
         //Card class constructor

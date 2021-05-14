@@ -179,7 +179,7 @@ namespace OOP_assessment_3
 
 
             int k = 1;
-            Console.WriteLine("Here is your hand: ");
+            Console.WriteLine("\nHere is your hand: ");
             foreach (Card i in hand)
             {
                 Console.WriteLine($"{k}: {i.num} of {i.suit}");

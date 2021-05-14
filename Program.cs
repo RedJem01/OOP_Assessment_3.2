@@ -135,10 +135,10 @@ namespace OOP_assessment_3
             {
                 //Calling the play function for the player and the computer
                 int hTotal = h.Play(h.handList.hand);
-                Console.WriteLine($"The total of your two cards is {hTotal}");
+                Console.WriteLine($"\nThe total of your two cards is {hTotal}");
 
                 int cTotal = c.Play(c.handList.hand);
-                Console.WriteLine($"\nThe total of the computer's two cards is {cTotal}");
+                Console.WriteLine($"The total of the computer's two cards is {cTotal}");
 
                 //Checking which total is bigger and who won the hand
                 if (hTotal > cTotal)
