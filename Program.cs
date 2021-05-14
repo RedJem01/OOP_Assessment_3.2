@@ -159,7 +159,7 @@ namespace OOP_assessment_3
                     bool loop = true;
                     while (loop == true)
                     {
-                        Console.WriteLine("Both the totals were the same. Whoever wins the nest round gets 2 hands");
+                        Console.WriteLine("\nBoth the totals were the same. Whoever wins the nest round gets 2 hands");
 
                         //They replay and whoever wins gets 2 added to their score instead of 1
                         int hdTotal = h.Play(h.handList.hand);
